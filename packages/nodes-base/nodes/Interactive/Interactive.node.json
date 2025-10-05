@@ -1,0 +1,201 @@
+{
+  "displayName": "Interactive",
+  "name": "interactive",
+  "icon": "file:interactive.svg",
+  "group": ["input"],
+  "version": 1,
+  "description": "Create interactive elements that can be configured and manipulated directly in the n8n editor interface",
+  "defaults": {
+    "name": "Interactive"
+  },
+  "inputs": ["main"],
+  "outputs": ["main"],
+  "properties": [
+    {
+      "displayName": "Interactive Type",
+      "name": "interactiveType",
+      "type": "options",
+      "options": [
+        {"name": "Button Click", "value": "button"},
+        {"name": "Text Input", "value": "textInput"},
+        {"name": "Number Input", "value": "numberInput"},
+        {"name": "Dropdown Selection", "value": "dropdown"},
+        {"name": "Checkbox", "value": "checkbox"},
+        {"name": "Date Picker", "value": "datePicker"},
+        {"name": "Color Picker", "value": "colorPicker"}
+      ],
+      "default": "button",
+      "description": "Type of interactive element to create"
+    },
+    {
+      "displayName": "Label",
+      "name": "label",
+      "type": "string",
+      "default": "Interactive Element",
+      "description": "Label/title for the interactive element"
+    },
+    {
+      "displayName": "Button Text",
+      "name": "buttonText",
+      "type": "string",
+      "default": "Click Me",
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["button"]
+        }
+      },
+      "description": "Text displayed on the button"
+    },
+    {
+      "displayName": "Button Action",
+      "name": "buttonAction",
+      "type": "options",
+      "options": [
+        {"name": "Generate Timestamp", "value": "timestamp"},
+        {"name": "Generate UUID", "value": "uuid"},
+        {"name": "Increment Counter", "value": "counter"},
+        {"name": "Custom Message", "value": "custom"}
+      ],
+      "default": "timestamp",
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["button"]
+        }
+      },
+      "description": "Action to perform when button is clicked"
+    },
+    {
+      "displayName": "Custom Message",
+      "name": "customMessage",
+      "type": "string",
+      "default": "Button was clicked!",
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["button"],
+          "buttonAction": ["custom"]
+        }
+      },
+      "description": "Custom message to return when button is clicked"
+    },
+    {
+      "displayName": "Input Value",
+      "name": "inputValue",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["textInput"]
+        }
+      },
+      "description": "Current value of the text input (you can type here and it will be captured)"
+    },
+    {
+      "displayName": "Number Value",
+      "name": "numberValue",
+      "type": "number",
+      "default": 0,
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["numberInput"]
+        }
+      },
+      "description": "Current numeric value (adjust using the number input)"
+    },
+    {
+      "displayName": "Dropdown Options",
+      "name": "dropdownOptions",
+      "type": "fixedCollection",
+      "typeOptions": {"multipleValues": true},
+      "default": {
+        "options": [
+          {"name": "Option 1", "value": "opt1"},
+          {"name": "Option 2", "value": "opt2"},
+          {"name": "Option 3", "value": "opt3"}
+        ]
+      },
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["dropdown"]
+        }
+      },
+      "options": [
+        {
+          "name": "options",
+          "displayName": "Option",
+          "values": [
+            {
+              "displayName": "Name",
+              "name": "name",
+              "type": "string",
+              "default": "",
+              "description": "Display name for the option"
+            },
+            {
+              "displayName": "Value",
+              "name": "value",
+              "type": "string",
+              "default": "",
+              "description": "Value to return when this option is selected"
+            }
+          ]
+        }
+      ],
+      "description": "Available options for the dropdown"
+    },
+    {
+      "displayName": "Selected Option",
+      "name": "selectedOption",
+      "type": "string",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["dropdown"]
+        }
+      },
+      "description": "Currently selected option value"
+    },
+    {
+      "displayName": "Checkbox Checked",
+      "name": "checkboxChecked",
+      "type": "boolean",
+      "default": false,
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["checkbox"]
+        }
+      },
+      "description": "Current state of the checkbox (check/uncheck to change)"
+    },
+    {
+      "displayName": "Selected Date",
+      "name": "selectedDate",
+      "type": "dateTime",
+      "default": "",
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["datePicker"]
+        }
+      },
+      "description": "Currently selected date and time"
+    },
+    {
+      "displayName": "Selected Color",
+      "name": "selectedColor",
+      "type": "color",
+      "default": "#3498db",
+      "displayOptions": {
+        "show": {
+          "interactiveType": ["colorPicker"]
+        }
+      },
+      "description": "Currently selected color (click to change)"
+    },
+    {
+      "displayName": "Include Metadata",
+      "name": "includeMetadata",
+      "type": "boolean",
+      "default": true,
+      "description": "Include additional metadata like timestamp, user interaction count, etc."
+    }
+  ]
+}

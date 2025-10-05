@@ -1,0 +1,199 @@
+
+    {
+      "name": "generate_article",
+      "description": "Gere um artigo de tecnologia completo e otimizado para SEO, recebendo apenas o tema central. A função deve criar automaticamente o título, URL, meta descrição, introdução, diversas seções detalhadas (o que é, quando surgiu, importância, como funciona, cenário atual, tendências futuras, impactos, considerações antes de usar, ferramentas relacionadas) e uma seção de Perguntas Frequentes (FAQ) com 5 pares de perguntas e respostas, além de uma conclusão. O conteúdo deve ser detalhado, envolvente e focado em palavras-chave relevantes para alto desempenho nos motores de busca.",
+      "parameters": {
+          "type": "object",
+          "properties": {
+              "description_article": {
+                  "type": "string",
+                  "description": "Descrição breve e persuasiva do conteúdo do artigo, com uso estratégico de palavras-chave. Deve resumir o tema de forma clara, despertando o interesse e otimizando a visualização nos mecanismos de busca."
+              },
+              "introduction": {
+                  "type": "string",
+                  "description": "Crie uma introdução concisa e envolvente que apresente o tema de forma clara e objetiva. Destaque sua relevância no contexto atual, desperte o interesse do leitor e integre palavras-chave de forma natural, mantendo a fluidez e a legibilidade do texto. Utilize estatísticas impactantes sobre o uso da tecnologia e mencione brevemente as aplicações mais comuns no dia a dia (além das já citadas ao longo do artigo), reforçando sua presença em diferentes aspectos da vida moderna."
+              },
+              "what_is": {
+                  "type": "object",
+                  "description": "Seção fundamental do artigo, que define o tema central. Deve ser obrigatorio o preenchimendo das propriedades title e content",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Título da seção 'O Que É?', que define claramente o tema central do artigo. Utilize variações naturais da pergunta, como 'Do que se trata?', 'Como funciona?' ou 'Qual o conceito?', para favorecer a leitura e o SEO."
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Apresente uma definição clara e objetiva do tema, utilizando a palavra-chave principal e suas variações de forma estratégica. Explique todos os conceitos fundamentais necessários para o entendimento do artigo. Use analogias simples que facilitem a compreensão de como a tecnologia funciona, sem perder a precisão. Inclua também uma explicação básica com uma linguagem técnica acessível, garantindo que leitores com diferentes níveis de conhecimento possam acompanhar o conteúdo."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "when_it_arose": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Título da seção 'Quando Surgiu?', abordando a origem e o contexto histórico do tema. Use variações como 'Como tudo começou?', 'Qual a história por trás?' ou 'Quando e por que surgiu?' para tornar a leitura mais fluida e otimizada para SEO."
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Apresente uma definição clara e objetiva do tema, utilizando a palavra-chave principal e suas variações de forma estratégica. Explique todos os conceitos fundamentais necessários para o entendimento do artigo. Use analogias simples que facilitem a compreensão de como a tecnologia funciona, sem perder a precisão. Inclua também uma explicação básica com uma linguagem técnica acessível, garantindo que leitores com diferentes níveis de conhecimento possam acompanhar o conteúdo."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "importance": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Título da seção 'Qual a Importância?', destacando a relevância do tema use variações tendo o mesmo sentido no titulo."
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Apresente a justificativa para a relevância do tema, explicando como ele impacta indivíduos, empresas e setores específicos. Para cada área, forneça exemplos práticos que evidenciem os benefícios e a aplicabilidade da tecnologia no contexto real. Explore como ela pode transformar processos, melhorar a eficiência ou trazer vantagens competitivas, destacando suas implicações em diferentes contextos. Ao abordar as aplicações do tema, inclua tanto os benefícios imediatos quanto os de longo prazo, enfatizando seu impacto em áreas-chave. Use palavras-chave estratégicas de forma natural para otimizar o conteúdo para SEO, garantindo maior visibilidade nos motores de busca."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "how_it_works_applied": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Título da seção 'Como Funciona?', 'Como é Aplicado?', 'Como se Utiliza?'. Use variações que mantenham o mesmo significado, otimizando para SEO de forma natural e clara."
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Explicação completa de como a tecnologia funciona, incluindo processos internos, mecanismos operacionais, estrutura e exemplos práticos de aplicação no dia a dia e em grandes empresas use exemplos especificos. Integre palavras-chave relevantes de forma estratégica para otimização em mecanismos de busca, garantindo profundidade e clareza no conteúdo."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "current_scenario": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Título da seção que apresenta o cenário atual relacionado ao tema abordado. Utilize variações naturais com o mesmo sentido, destacando inovações, tendências, estatísticas e aplicações mais recentes. Otimize o título com palavras-chave relevantes, mantendo uma estrutura clara e informativa para facilitar a leitura e melhorar o desempenho nos mecanismos de busca."
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Apresenta o estado atual da tecnologia em 2025, destacando as principais tendências atuais, ferramentas de uso comum, frameworks emergentes, estatísticas recentes e empresas relevantes do setor e faça um detalhamento sobre os beneficios da tecnologia. Este panorama oferece uma visão abrangente e atualizada do cenário, com foco em palavras-chave como em 2025, tendências atuais e ferramentas de, otimizando o conteúdo para os mecanismos de busca e garantindo profundidade e relevância."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "future_trends": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Explora as projeções e possíveis caminhos para o futuro da tecnologia, destacando tendências emergentes, inovações esperadas, mudanças no comportamento do mercado e avanços previstos para os próximos anos. Inclui palavras-chave como “futuro da tecnologia”, “tendências para os próximos anos” e “inovações em 2025 e além”, com foco em SEO e profundidade analítica"
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Apresenta uma visão clara sobre as tendências futuras da tecnologia, explorando inovações promissoras, mudanças esperadas no comportamento do consumidor, . Com foco em previsões para os próximos anos, o conteúdo destaca tendências atuais, cenários projetados, expectativas do mercado, desafios a serem superados e o impacto esperado em empresas e na sociedade. Ideal para quem busca entender o que está por vir e se preparar para o futuro."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "impacts_consequences": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Análise dos impactos e consequências gerados pelo tema, considerando efeitos positivos e negativos em diferentes esferas — como sociedade, mercado de trabalho, empresas e cotidiano das pessoas. A seção aborda transformações visíveis, mudanças estruturais, influência tecnológica e possíveis desdobramentos sociais, econômicos e éticos. Utiliza palavras-chave como 'impacto em 2025', 'mudanças causadas por', 'efeitos da tecnologia', trazendo profundidade e relevância ao conteúdo para os mecanismos de busca."
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Explore os principais impactos e consequências relacionados ao tema, destacando como ele tem transformado a sociedade, os negócios e o comportamento humano. Esta seção analisa efeitos diretos e indiretos, positivos e negativos, que surgem com a adoção ou evolução da tecnologia. São abordadas questões como mudanças no mercado de trabalho, implicações éticas, desafios regulatórios, além de exemplos reais de empresas e setores que já estão sendo afetados. A análise é feita com base em dados recentes e projeções para o futuro, utilizando palavras-chave como 'impactos em 2025', 'consequências da transformação digital' e 'efeitos da inovação' e suas variações, otimizando o conteúdo para mecanismos de busca."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "before_using": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Apresenta orientações práticas e informações essenciais para quem deseja adotar ou utilizar a tecnologia/conceito abordado. A seção destaca cuidados, requisitos técnicos, possíveis desafios, custos envolvidos, e pontos de atenção. Ajuda o leitor a tomar decisões mais conscientes, evitando erros comuns. Inclui termos-chave como “antes de usar”, “como começar”, “o que considerar”, “recomendações práticas” e suas variações, favorecendo o ranqueamento em mecanismos de busca"
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Fornece uma explicação clara e objetiva sobre as considerações e informações necessárias antes de adotar ou utilizar a tecnologia ou conceito abordado. Inclui detalhes sobre requisitos técnicos, habilidades essenciais, precauções, limitações, e regulamentações importantes. A descrição também oferece dicas práticas, cuidados ao utilizar e melhores práticas recomendadas, ajudando o usuário a entender os preparativos necessários antes de adotar a solução. Esta seção deve garantir que os leitores estejam bem informados e preparados para aplicar a tecnologia de forma eficaz e segura, Utilize palavras chaves para ajudar o mecanismo de busca"
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "related_tools_tech": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Titulo para o conteudo de tecnologias e ferramentas relacionadas ao tema principal, otimizado para SEO"
+                      },
+                      "content": {
+                          "type": "string",
+                          "description": "Nesta seção, serão listadas ferramentas, softwares, tecnologias e plataformas relacionadas ao tema principal do artigo. O objetivo é fornecer aos leitores uma visão abrangente das opções e recursos disponíveis que complementam ou são essenciais para a aplicação do conceito discutido. Cada ferramenta ou tecnologia será apresentada com uma breve explicação sobre suas funcionalidades, como ela pode ser utilizada no contexto do tema abordado e, quando aplicável, exemplos de casos de uso em empresas ou em situações práticas. Além disso, serão destacadas tendências de mercado, como essas ferramentas estão sendo adotadas atualmente e suas principais vantagens. O conteúdo será otimizado com palavras-chave que ajudarão os mecanismos de busca a relacionar a seção com termos de pesquisa relevantes, promovendo maior visibilidade e acessibilidade."
+                      }
+                  },
+                  "required": ["title", "content"]
+              },
+              "faq": {
+                  "type": "object",
+                  "properties": {
+                      "title": {
+                          "type": "string",
+                          "description": "Título da seção 'Perguntas Frequentes (FAQ)' Use variações do titulo com o mesmo objetivo."
+                      },
+                      "questions": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "question": {
+                                        "type": "string",
+                                        "description": "Pergunta frequente sobre o tema tratado otimizada para SEO. Deve conter um total de 5 perguntas."
+                                    },
+                                    "answer": {
+                                        "type": "string",
+                                        "description": "Resposta clara e concisa para a pergunta, utilizando palavras-chave relevantes. Deve haver 5 respostas correspondentes."
+                                    }
+                                },
+                                "required": ["question", "answer"]
+                            },
+                            "description": "Lista de perguntas e respostas frequentes relacionadas ao tema. O ideal é que contenha 5 pares de perguntas e respostas."
+                        }
+                  },
+                  "required": ["title", "questions"]
+              },
+              "conclusion": {
+                  "type": "string",
+                  "description": "Resumo dos principais pontos abordados no artigo, oferecendo um insight final. e uma breve reflexão so o futuro da tecnologia e como o mundo esta ou estará mais dependente, trazendo um ponto de vista sobre essa tecnologia"
+              },
+              "category": {
+                  "type": "string",
+                  "description": "Categoria do artigo, de acordo com as seguintes opções: Inovação e Futuro da Tecnologia, Inteligência Artificial e Machine Learning, Tecnologia no Cotidiano, Tecnologia e Sociedade, Carreira, Profissões e Educação, Segurança Digital e Privacidade, Negócios, Marketing e Tecnologia, Tecnologia Sustentável e Ambiental."
+              }
+          },
+          "required": [
+              "url_article",
+              "title_article",
+              "description_article",
+              "introduction",
+              "what_is",
+              "when_it_arose",
+              "importance",
+              "how_it_works_applied",
+              "current_scenario",
+              "future_trends",
+              "impacts_consequences",
+              "before_using",
+              "related_tools_tech",
+              "faq",
+              "conclusion",
+              "category"
+          ]
+      }
+  }

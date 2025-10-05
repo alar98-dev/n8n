@@ -1,0 +1,84 @@
+mkdir -p #P"/tmp/pgloader/"
+pgloader version 3.6.7~devel
+compiled with SBCL 2.1.1.debian
+sb-impl::*default-external-format* :UTF-8
+tmpdir: #P"/tmp/pgloader/"
+2025-10-05T20:29:15.008001Z NOTICE Starting pgloader, log system is ready.
+2025-10-05T20:29:15.016001Z INFO Starting monitor
+2025-10-05T20:29:15.020001Z LOG pgloader version "3.6.7~devel"
+2025-10-05T20:29:15.020001Z INFO     SOURCE: "sqlite:///data/database.sqlite"
+2025-10-05T20:29:15.020001Z INFO SOURCE URI: #<PGLOADER.SOURCE.SQLITE:SQLITE-CONNECTION sqlite:///data/database.sqlite {10072FE773}>
+2025-10-05T20:29:15.020001Z INFO     TARGET: "postgresql://n8n:password@n8n-postgres:5432/n8n"
+2025-10-05T20:29:15.020001Z INFO TARGET URI: #<PGLOADER.PGSQL:PGSQL-CONNECTION pgsql://n8n@n8n-postgres:5432/n8n {1007454B63}>
+2025-10-05T20:29:15.020001Z DEBUG LOAD DATA FROM #<PGLOADER.SOURCE.SQLITE:SQLITE-CONNECTION sqlite:///data/database.sqlite {10072FE773}>
+2025-10-05T20:29:15.048001Z DEBUG CONNECTED TO #<PGLOADER.PGSQL:PGSQL-CONNECTION pgsql://n8n@n8n-postgres:5432/n8n {1007454B63}>
+2025-10-05T20:29:15.048001Z DEBUG SET client_encoding TO 'utf8'
+2025-10-05T20:29:15.048001Z DEBUG SET application_name TO 'pgloader'
+2025-10-05T20:29:15.056001Z LOG Migrating from #<SQLITE-CONNECTION sqlite:///data/database.sqlite {10072FE773}>
+2025-10-05T20:29:15.056001Z LOG Migrating into #<PGSQL-CONNECTION pgsql://n8n@n8n-postgres:5432/n8n {1007454B63}>
+2025-10-05T20:29:15.068002Z DEBUG CONNECTED TO /data/database.sqlite
+2025-10-05T20:29:15.068002Z SQL SQLite: SELECT tbl_name
+  FROM sqlite_master
+ WHERE tbl_name = 'sqlite_sequence'
+2025-10-05T20:29:15.076002Z SQL SELECT tbl_name
+  FROM sqlite_master
+ WHERE type='table'
+       AND tbl_name <> 'sqlite_sequence'
+       
+       
+2025-10-05T20:29:15.080002Z NOTICE SQLite column migrations.id uses a sequence
+2025-10-05T20:29:15.088002Z NOTICE SQLite column execution_metadata.id uses a sequence
+2025-10-05T20:29:15.088002Z NOTICE SQLite column execution_annotations.id is autoincrement, but has no sequence
+2025-10-05T20:29:15.088002Z NOTICE SQLite column execution_entity.id uses a sequence
+2025-10-05T20:29:15.128003Z INFO Processing source catalogs
+2025-10-05T20:29:15.140003Z NOTICE Prepare PostgreSQL database.
+2025-10-05T20:29:15.160003Z DEBUG CONNECTED TO #<PGLOADER.PGSQL:PGSQL-CONNECTION pgsql://n8n@n8n-postgres:5432/n8n {1007454B63}>
+2025-10-05T20:29:15.160003Z DEBUG SET client_encoding TO 'utf8'
+2025-10-05T20:29:15.160003Z DEBUG SET application_name TO 'pgloader'
+2025-10-05T20:29:15.160003Z DEBUG BEGIN
+2025-10-05T20:29:15.192004Z SQL DROP TABLE IF EXISTS migrations CASCADE;
+2025-10-05T20:29:15.196004Z SQL CREATE TABLE migrations 
+(
+  id        bigserial,
+  timestamp bigint,
+  name      text
+);
+2025-10-05T20:29:15.204004Z SQL DROP TABLE IF EXISTS settings CASCADE;
+2025-10-05T20:29:15.204004Z SQL CREATE TABLE settings 
+(
+  key           text,
+  value         text default '',
+  loadonstartup boolean default 'false'
+);
+2025-10-05T20:29:15.208004Z SQL DROP TABLE IF EXISTS installed_packages CASCADE;
+2025-10-05T20:29:15.212004Z SQL CREATE TABLE installed_packages 
+(
+  packagename      text,
+  installedversion text,
+  authorname       text,
+  authoremail      text,
+  createdat        timestamptz default 'STRFTIME(''''%Y-%m-%d %H:%M:%f'''', ''''NOW'''')',
+  updatedat        timestamptz default 'STRFTIME(''''%Y-%m-%d %H:%M:%f'''', ''''NOW'''')'
+);
+2025-10-05T20:29:15.212004Z ERROR Database error 22007: invalid input syntax for type timestamp with time zone: "STRFTIME(''%Y-%m-%d %H:%M:%f'', ''NOW'')"
+QUERY: CREATE TABLE installed_packages 
+(
+  packagename      text,
+  installedversion text,
+  authorname       text,
+  authoremail      text,
+  createdat        timestamptz default 'STRFTIME(''''%Y-%m-%d %H:%M:%f'''', ''''NOW'''')',
+  updatedat        timestamptz default 'STRFTIME(''''%Y-%m-%d %H:%M:%f'''', ''''NOW'''')'
+);
+2025-10-05T20:29:15.212004Z FATAL Failed to create the schema, see above.
+2025-10-05T20:29:15.216005Z LOG report summary reset
+       table name     errors       read   imported      bytes      total time       read      write
+-----------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+            fetch          0          0          0                     0.000s    
+  fetch meta data          0        151        151                     0.064s    
+   Create Schemas          0          0          0                     0.004s    
+ Create SQL Types          0          0          0                     0.004s    
+    Create tables          0          0          0                     0.000s    
+-----------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+-----------------  ---------  ---------  ---------  ---------  --------------  ---------  ---------
+2025-10-05T20:29:15.240005Z INFO Stopping monitor

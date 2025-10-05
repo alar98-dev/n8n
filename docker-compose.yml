@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   n8n:
     image: docker.n8n.io/n8nio/n8n
@@ -6,7 +8,38 @@ services:
       - "5678:5678"
     volumes:
       - n8n_data:/home/node/.n8n
+    environment:
+      - DB_TYPE=postgresdb
+      - DB_POSTGRESDB_HOST=postgres
+      - DB_POSTGRESDB_PORT=5432
+      - DB_POSTGRESDB_DATABASE=n8n
+      - DB_POSTGRESDB_USER=n8n
+      - DB_POSTGRESDB_PASSWORD=password
+    depends_on:
+      - postgres
+    networks:
+      - local_network
     restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: n8n-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=n8n
+      - POSTGRES_USER=n8n
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - local_network
+
 
 volumes:
   n8n_data:
+  postgres-data:
+
+
+networks:
+  local_network:
+    driver: bridge

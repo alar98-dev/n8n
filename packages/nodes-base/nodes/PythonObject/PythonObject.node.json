@@ -1,0 +1,31 @@
+{
+    "node": "n8n-nodes-base.pythonObject",
+    "nodeVersion": "1.0",
+    "codexVersion": "1.0",
+    "categories": ["Development", "Data & Storage"],
+    "resources": {
+        "primaryDocumentation": [
+            {
+                "url": "https://docs.python.org/3/tutorial/classes.html"
+            }
+        ],
+        "generic": [
+            {
+                "label": "Python OOP Concepts",
+                "icon": "📚",
+                "url": "https://realpython.com/python3-object-oriented-programming/"
+            },
+            {
+                "label": "Encapsulation in Python",
+                "icon": "🔒",
+                "url": "https://realpython.com/python-encapsulation/"
+            },
+            {
+                "label": "Inheritance and Polymorphism",
+                "icon": "🧬",
+                "url": "https://realpython.com/inheritance-composition-python/"
+            }
+        ]
+    },
+    "alias": ["Python Class", "OOP", "Object Oriented", "Class Definition", "Inheritance", "Polymorphism", "Encapsulation"]
+}

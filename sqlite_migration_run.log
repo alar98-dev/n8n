@@ -1,0 +1,445 @@
+Migrating table: annotation_tag_entity
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "annotation_tag_entity" (
+  "id" varchar(16) NOT NULL,
+  "name" varchar(24) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for annotation_tag_entity
+Migrating table: auth_identity
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "auth_identity" (
+  "userId" varchar(36),
+  "providerId" varchar(64) NOT NULL,
+  "providerType" varchar(32) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("providerId", "providerType")
+);
+  no rows for auth_identity
+Migrating table: auth_provider_sync_history
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "auth_provider_sync_history" (
+  "id" integer,
+  "providerType" varchar(32) NOT NULL,
+  "runMode" text NOT NULL,
+  "status" text NOT NULL,
+  "startedAt" timestamp(3) with time zone NOT NULL,
+  "endedAt" timestamp(3) with time zone NOT NULL,
+  "scanned" integer NOT NULL,
+  "created" integer NOT NULL,
+  "updated" integer NOT NULL,
+  "disabled" integer NOT NULL,
+  "error" text, PRIMARY KEY ("id")
+);
+  no rows for auth_provider_sync_history
+Migrating table: credentials_entity
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "credentials_entity" (
+  "id" varchar(36) NOT NULL,
+  "name" varchar(128) NOT NULL,
+  "data" text NOT NULL,
+  "type" varchar(32) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "isManaged" boolean NOT NULL DEFAULT 0, PRIMARY KEY ("id")
+);
+  inserted 3 rows into credentials_entity
+Migrating table: data_table
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "data_table" (
+  "id" varchar(36) NOT NULL,
+  "name" varchar(128) NOT NULL,
+  "projectId" varchar(36) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for data_table
+Migrating table: data_table_column
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "data_table_column" (
+  "id" varchar(36) NOT NULL,
+  "name" varchar(128) NOT NULL,
+  "type" varchar(32) NOT NULL,
+  "index" integer NOT NULL,
+  "dataTableId" varchar(36) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for data_table_column
+Migrating table: event_destinations
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "event_destinations" (
+  "id" varchar(36) NOT NULL,
+  "destination" text NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for event_destinations
+Migrating table: execution_annotation_tags
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "execution_annotation_tags" (
+  "annotationId" integer NOT NULL,
+  "tagId" varchar(24) NOT NULL, PRIMARY KEY ("annotationId", "tagId")
+);
+  no rows for execution_annotation_tags
+Migrating table: execution_annotations
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "execution_annotations" (
+  "id" integer NOT NULL,
+  "executionId" integer NOT NULL,
+  "vote" varchar(6),
+  "note" text,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for execution_annotations
+Migrating table: execution_data
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "execution_data" (
+  "executionId" integer NOT NULL,
+  "workflowData" text NOT NULL,
+  "data" jsonb NOT NULL, PRIMARY KEY ("executionId")
+);
+  inserted 497 rows into execution_data
+Migrating table: execution_entity
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "execution_entity" (
+  "id" integer NOT NULL,
+  "workflowId" varchar(36) NOT NULL,
+  "finished" boolean NOT NULL,
+  "mode" text NOT NULL,
+  "retryOf" text,
+  "retrySuccessId" text,
+  "startedAt" timestamp(3) with time zone,
+  "stoppedAt" timestamp(3) with time zone,
+  "waitTill" timestamp(3) with time zone,
+  "status" text NOT NULL,
+  "deletedAt" timestamp(3) with time zone,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  inserted 497 rows into execution_entity
+Migrating table: execution_metadata
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "execution_metadata" (
+  "id" integer NOT NULL,
+  "executionId" integer NOT NULL,
+  "key" varchar(255) NOT NULL,
+  "value" text NOT NULL, PRIMARY KEY ("id")
+);
+  inserted 1 rows into execution_metadata
+Migrating table: folder
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "folder" (
+  "id" varchar(36) NOT NULL,
+  "name" varchar(128) NOT NULL,
+  "parentFolderId" varchar(36),
+  "projectId" varchar(36) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for folder
+Migrating table: folder_tag
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "folder_tag" (
+  "folderId" varchar(36) NOT NULL,
+  "tagId" varchar(36) NOT NULL, PRIMARY KEY ("folderId", "tagId")
+);
+  no rows for folder_tag
+Migrating table: insights_by_period
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "insights_by_period" (
+  "id" integer NOT NULL,
+  "metaId" integer NOT NULL,
+  "type" integer NOT NULL,
+  "value" integer NOT NULL,
+  "periodUnit" integer NOT NULL,
+  "periodStart" timestamp(3) with time zone DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  inserted 2 rows into insights_by_period
+Migrating table: insights_metadata
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "insights_metadata" (
+  "metaId" integer NOT NULL,
+  "workflowId" varchar(16),
+  "projectId" varchar(36),
+  "workflowName" varchar(128) NOT NULL,
+  "projectName" varchar(255) NOT NULL, PRIMARY KEY ("metaId")
+);
+  inserted 1 rows into insights_metadata
+Migrating table: insights_raw
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "insights_raw" (
+  "id" integer NOT NULL,
+  "metaId" integer NOT NULL,
+  "type" integer NOT NULL,
+  "value" integer NOT NULL,
+  "timestamp" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for insights_raw
+Migrating table: installed_nodes
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "installed_nodes" (
+  "name" text NOT NULL,
+  "type" text NOT NULL,
+  "latestVersion" integer DEFAULT 1,
+  "package" text NOT NULL, PRIMARY KEY ("name")
+);
+  no rows for installed_nodes
+Migrating table: installed_packages
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "installed_packages" (
+  "packageName" text NOT NULL,
+  "installedVersion" text NOT NULL,
+  "authorName" text,
+  "authorEmail" text,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("packageName")
+);
+  no rows for installed_packages
+Migrating table: invalid_auth_token
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "invalid_auth_token" (
+  "token" varchar(512) NOT NULL,
+  "expiresAt" timestamp(3) with time zone NOT NULL, PRIMARY KEY ("token")
+);
+  no rows for invalid_auth_token
+Migrating table: migrations
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "migrations" (
+  "id" integer NOT NULL,
+  "timestamp" integer NOT NULL,
+  "name" text NOT NULL, PRIMARY KEY ("id")
+);
+  inserted 95 rows into migrations
+Migrating table: processed_data
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "processed_data" (
+  "workflowId" varchar(36) NOT NULL,
+  "context" varchar(255) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "value" text NOT NULL, PRIMARY KEY ("workflowId", "context")
+);
+  no rows for processed_data
+Migrating table: project
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "project" (
+  "id" varchar(36) NOT NULL,
+  "name" varchar(255) NOT NULL,
+  "type" varchar(36) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "icon" text,
+  "description" varchar(512), PRIMARY KEY ("id")
+);
+  inserted 1 rows into project
+Migrating table: project_relation
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "project_relation" (
+  "projectId" varchar(36) NOT NULL,
+  "userId" text NOT NULL,
+  "role" text NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("projectId", "userId")
+);
+  inserted 1 rows into project_relation
+Migrating table: role
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "role" (
+  "slug" varchar(128) NOT NULL,
+  "displayName" text,
+  "description" text,
+  "roleType" text,
+  "systemRole" boolean NOT NULL DEFAULT 'false', PRIMARY KEY ("slug")
+);
+  inserted 11 rows into role
+Migrating table: role_scope
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "role_scope" (
+  "roleSlug" varchar(128) NOT NULL,
+  "scopeSlug" varchar(128) NOT NULL, PRIMARY KEY ("roleSlug", "scopeSlug")
+);
+  inserted 298 rows into role_scope
+Migrating table: scope
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "scope" (
+  "slug" varchar(128) NOT NULL,
+  "displayName" text,
+  "description" text, PRIMARY KEY ("slug")
+);
+  inserted 133 rows into scope
+Migrating table: settings
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "settings" (
+  "key" text NOT NULL,
+  "value" jsonb NOT NULL DEFAULT '''''',
+  "loadOnStartup" boolean NOT NULL DEFAULT 'false', PRIMARY KEY ("key")
+);
+  inserted 7 rows into settings
+Migrating table: shared_credentials
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "shared_credentials" (
+  "credentialsId" varchar(36) NOT NULL,
+  "projectId" varchar(36) NOT NULL,
+  "role" text NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("credentialsId", "projectId")
+);
+  inserted 3 rows into shared_credentials
+Migrating table: shared_workflow
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "shared_workflow" (
+  "workflowId" varchar(36) NOT NULL,
+  "projectId" varchar(36) NOT NULL,
+  "role" text NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("workflowId", "projectId")
+);
+  inserted 4 rows into shared_workflow
+Migrating table: tag_entity
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "tag_entity" (
+  "id" varchar(36) NOT NULL,
+  "name" varchar(24) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for tag_entity
+Migrating table: test_case_execution
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "test_case_execution" (
+  "id" varchar(36) NOT NULL,
+  "testRunId" varchar(36) NOT NULL,
+  "pastExecutionId" integer,
+  "executionId" integer,
+  "evaluationExecutionId" integer,
+  "status" text NOT NULL,
+  "runAt" timestamp(3) with time zone,
+  "completedAt" timestamp(3) with time zone,
+  "errorCode" text,
+  "errorDetails" text,
+  "metrics" text,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "inputs" text,
+  "outputs" text, PRIMARY KEY ("id")
+);
+  no rows for test_case_execution
+Migrating table: test_run
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "test_run" (
+  "id" varchar(36) NOT NULL,
+  "workflowId" varchar(36) NOT NULL,
+  "status" text NOT NULL,
+  "errorCode" text,
+  "errorDetails" text,
+  "runAt" timestamp(3) with time zone,
+  "completedAt" timestamp(3) with time zone,
+  "metrics" text,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP, PRIMARY KEY ("id")
+);
+  no rows for test_run
+Migrating table: user
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "user" (
+  "id" text,
+  "email" varchar(255),
+  "firstName" varchar(32),
+  "lastName" varchar(32),
+  "password" text,
+  "personalizationAnswers" text,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "settings" jsonb,
+  "disabled" boolean NOT NULL DEFAULT 'false',
+  "mfaEnabled" boolean NOT NULL DEFAULT 'false',
+  "mfaSecret" text,
+  "mfaRecoveryCodes" text,
+  "lastActiveAt" text,
+  "roleSlug" varchar(128) NOT NULL DEFAULT '''global:member''', PRIMARY KEY ("id")
+);
+  inserted 1 rows into user
+Migrating table: user_api_keys
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "user_api_keys" (
+  "id" varchar(36) NOT NULL,
+  "userId" text NOT NULL,
+  "label" varchar(100) NOT NULL,
+  "apiKey" text NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "scopes" text, PRIMARY KEY ("id")
+);
+  no rows for user_api_keys
+Migrating table: variables
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "variables" (
+  "id" varchar(36) NOT NULL,
+  "key" text NOT NULL,
+  "type" text NOT NULL DEFAULT '''string''',
+  "value" text, PRIMARY KEY ("id")
+);
+  no rows for variables
+Migrating table: webhook_entity
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "webhook_entity" (
+  "workflowId" varchar(36) NOT NULL,
+  "webhookPath" text NOT NULL,
+  "method" text NOT NULL,
+  "node" text NOT NULL,
+  "webhookId" text,
+  "pathLength" integer, PRIMARY KEY ("webhookPath", "method")
+);
+  inserted 2 rows into webhook_entity
+Migrating table: workflow_entity
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "workflow_entity" (
+  "id" varchar(36) NOT NULL,
+  "name" varchar(128) NOT NULL,
+  "active" boolean NOT NULL,
+  "nodes" jsonb,
+  "connections" jsonb,
+  "settings" jsonb,
+  "staticData" text,
+  "pinData" text,
+  "versionId" varchar(36),
+  "triggerCount" integer DEFAULT 0,
+  "meta" jsonb,
+  "parentFolderId" varchar(36),
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "isArchived" boolean NOT NULL DEFAULT 'false', PRIMARY KEY ("id")
+);
+  inserted 4 rows into workflow_entity
+Migrating table: workflow_history
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "workflow_history" (
+  "versionId" varchar(36) NOT NULL,
+  "workflowId" varchar(36) NOT NULL,
+  "authors" varchar(255) NOT NULL,
+  "createdAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "updatedAt" timestamp(3) with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  "nodes" jsonb NOT NULL,
+  "connections" jsonb NOT NULL, PRIMARY KEY ("versionId")
+);
+  inserted 35 rows into workflow_history
+Migrating table: workflow_statistics
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "workflow_statistics" (
+  "count" integer DEFAULT 0,
+  "latestEvent" timestamp(3) with time zone,
+  "name" varchar(128) NOT NULL,
+  "workflowId" varchar(36),
+  "rootCount" integer DEFAULT 0, PRIMARY KEY ("name", "workflowId")
+);
+  inserted 9 rows into workflow_statistics
+Migrating table: workflows_tags
+-- create_sql:
+ CREATE TABLE IF NOT EXISTS "workflows_tags" (
+  "workflowId" varchar(36) NOT NULL,
+  "tagId" integer NOT NULL, PRIMARY KEY ("workflowId", "tagId")
+);
+  no rows for workflows_tags
+Migration finished

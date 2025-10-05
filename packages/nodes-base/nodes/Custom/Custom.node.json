@@ -1,0 +1,50 @@
+{
+  "displayName": "Custom",
+  "name": "custom",
+  "icon": "file:markdown.svg",
+  "group": ["transform"],
+  "version": 1,
+  "description": "Create a JS/Python-friendly object that holds attributes and method code",
+  "defaults": {
+    "name": "Custom"
+  },
+  "inputs": ["main"],
+  "outputs": ["main"],
+  "properties": [
+    {
+      "displayName": "Attributes",
+      "name": "attributes",
+      "type": "fixedCollection",
+      "typeOptions": {"multipleValues": true},
+      "default": [],
+      "options": [
+        {
+          "name": "attributeValues",
+          "displayName": "Attribute",
+          "values": [
+            {"displayName": "Name", "name": "name", "type": "string", "default": ""},
+            {"displayName": "Value", "name": "value", "type": "string", "default": ""}
+          ]
+        }
+      ]
+    },
+    {
+      "displayName": "Methods",
+      "name": "methods",
+      "type": "fixedCollection",
+      "typeOptions": {"multipleValues": true},
+      "default": [],
+      "options": [
+        {
+          "name": "methodValues",
+          "displayName": "Method",
+          "values": [
+            {"displayName": "Name", "name": "name", "type": "string", "default": ""},
+            {"displayName": "Language", "name": "language", "type": "options", "options": [{"name":"JavaScript","value":"js"},{"name":"Python","value":"python"}], "default": "js"},
+            {"displayName": "Code", "name": "code", "type": "string", "default": ""}
+          ]
+        }
+      ]
+    }
+  ]
+}

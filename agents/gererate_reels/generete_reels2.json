@@ -1,0 +1,90 @@
+[
+{
+    "name": "generate_video_script",
+    "description": "Gera um roteiro detalhado para um vídeo sobre o mesmo tema de um artigo de tecnologia gerado em formato json, otimizado para engajamento em plataformas de vídeo como o YouTube. - Não usar nomes das Grandes empresas protegidas pela Politicas de privacidade.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "video_title": {
+          "type": "string",
+          "description": "Título chamativo e otimizado para busca do vídeo."
+        }
+        },
+        "theme": {
+          "type": "string",
+          "description": "O tema principal do vídeo (o mesmo do artigo)."
+        },
+        "target_audience": {
+          "type": "string",
+          "description": "Descrição do público-alvo do vídeo (ex: entusiastas de tecnologia, profissionais da área, iniciantes e etc)."
+        },
+        "opening_hook": {
+						"type": "string",
+						"description": "Frase ou pergunta de impacto para iniciar o vídeo e prender a atenção do espectador, uma pergunta no qual vai ser respondido dentro do video."
+					},
+				"image": {
+					"type": "string",
+					"description": "Descrição otimizada para gerar uma imagem em IA que represente o gancho de abertura do vídeo."
+				},
+				"introduction_what_is": {
+					"type": "string",
+					"description": "Definição clara e concisa do tema principal para o público do vídeo."
+				},
+
+				"introduction_why_important": {
+					"type": "string",
+					"description": "Breve explicação sobre a relevância e o impacto do tema."
+				},
+				"historical_context": {
+					"type": "string",
+					"description": "Resumo dos principais momentos e marcos da história e evolução do tema."
+				},
+				"how_it_works_applications": {
+					"type": "string",
+					"description": "Explicação simplificada de como a tecnologia funciona e exemplos práticos de suas aplicações."
+				},
+				"current_scenario": {
+					"type": "string",
+					"description": "EVisão geral do estado atual da tecnologia, tendências e exemplos de uso."
+				},
+
+				"future_trends": {
+					"type": "string",
+					"description": "Discussão sobre as previsões, avanços esperados e o futuro do tema."
+				},
+				"impacts_consequences": {
+					"type": "string",
+					"description": "Análise dos impactos positivos e negativos da tecnologia em diversas áreas."
+				},
+				"before_using_tips": {
+					"type": "string",
+					"description": "Dicas práticas, cuidados ou informações importantes para quem deseja aprender ou usar a tecnologia."
+				},
+				"related_tools_tech": {
+							"type": "string",
+							"description": "Lista e breve descrição de ferramentas, softwares ou tecnologias relacionadas."
+						},
+				"adeus": {
+							"type": "string",
+							"description": "Despedida relacionando o adeus com o tema"
+						}
+      },
+      "required": [
+        "video_title",
+        "theme",
+        "target_audience",
+        "opening_hook",
+        "introduction_what_is",
+        "introduction_why_important",
+        "historical_context",
+        "how_it_works_applications",
+        "current_scenario",
+        "future_trends",
+        "impacts_consequences",
+        "before_using_tips",
+        "related_tools_tech",
+        "adeus"
+      ]
+    }
+
+]

@@ -1,0 +1,28 @@
+
+    {
+      "name": "get_lead",
+      "description": "Você é reponsavel por armazenar o nome, telefone e email do leed",
+      "parameters": {
+          "type": "object",
+          "properties": {
+              "name": {
+                  "type": "string",
+                  "description": "O nome completo do Usuario que você esta interagindo, seja gentil"
+              },
+              "telefone": {
+                  "type": "string",
+                  "description": "numero de telefone do usuario"
+              },
+              "email": {
+                  "type": "string",
+                  "description": "Email do usuario que você esta interagindo"
+              }
+
+          },
+          "required": [
+              "name",
+              "telefone",
+              "email"
+          ]
+      }
+  }
